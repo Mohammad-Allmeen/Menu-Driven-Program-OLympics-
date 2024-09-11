@@ -1,0 +1,137 @@
+gymnastics_gold_medals = { 
+2008: { 
+"USA": 2, 
+"China": 11, 
+"Russia": 2, 
+"Romania": 1, 
+"Korea": 1, 
+"Poland": 1 
+}, 
+2012: { 
+"USA": 3, 
+"China": 5, 
+"Russia": 3, 
+"Japan": 1, 
+"Romania": 1, 
+"Brazil": 1, 
+"Canada": 1, 
+"Hungary": 1, 
+"Netherlands": 1, 
+"Korea": 1 
+}, 
+2016: { 
+"USA": 4, 
+"Russia": 3, 
+        "Japan": 2, 
+        "Ukraine": 1, 
+        "Belarus": 1, 
+        "Canada": 1, 
+        "Korea": 2, 
+        "Greece": 1, 
+        "Netherlands": 1 
+    }, 
+    2020: { 
+        "China": 4, 
+        "Russia": 3, 
+        "USA": 2, 
+        "Japan": 2, 
+        "Brazil": 1, 
+        "Great Britain": 1, 
+        "Belarus": 1, 
+        "Bulgaria": 1 
+    }, 
+    2024: { 
+        "USA": 3, 
+        "Japan": 3, 
+        "China": 2, 
+        "Philippines": 2, 
+        "Brazil": 1, 
+        "Italy": 1, 
+        "Algeria": 1 
+    } 
+} 
+ 
+user_records = [] 
+ 
+def add_record(): 
+    year = int(input("Enter the Olympic year (2008, 2012, 
+2016, 2020, 2024): ")) 
+    if year not in gymnastics_gold_medals: 
+        print("Sorry, the data is available only for Olympics 
+held between 2008 to 2024.") 
+        return 
+    country = input("Enter the country name: ") 
+    gold_medals = int(input("Enter the number of gold medals 
+won in gymnastics: ")) 
+    user_records.append({"year": year, "country": country, 
+"gold_medals": gold_medals}) 
+    print("Your Records are added successfully.") 
+ 
+def delete_record(): 
+    if not user_records: 
+        print("No records found.") 
+        return 
+ 
+    print("\nSelect the record you want to delete:") 
+    for i, record in enumerate(user_records): 
+        print(f"{i + 1}. {record['country']} - 
+{record['year']} - {record['gold_medals']} gold medals") 
+     
+    choice = int(input("Enter the record number to delete: ")) - 1 
+     
+    if 0 <= choice < len(user_records): 
+        deleted_record = user_records.pop(choice) 
+        print(f"Record deleted: {deleted_record['country']} - 
+{deleted_record['year']} - {deleted_record['gold_medals']} 
+gold medals") 
+    else: 
+        print("Invalid choice.") 
+ 
+def view_all_records(): 
+    if not user_records: 
+        print("No records found.") 
+    else: 
+        print("\nAll Records:") 
+        for record in user_records: 
+            print(f"{record['country']} - {record['year']} - 
+{record['gold_medals']} gold medals") 
+ 
+def search_winners(): 
+    year = int(input("Enter the Olympic year (2008, 2012, 
+2016, 2020, 2024): ")) 
+    if year not in gymnastics_gold_medals: 
+print("Sorry, the data can be entered only for 
+Olympics held between 2008 to 2024.") 
+return 
+country = input("Enter the country name: ") 
+if country in gymnastics_gold_medals[year]: 
+print(f"{country} won 
+{gymnastics_gold_medals[year][country]} gold medal(s) in 
+gymnastics in {year}.") 
+else: 
+print(f"{country} has not won the gold medal in 
+gymnastics in {year}.") 
+def main(): 
+while True: 
+print("\nMenu:") 
+print("1. Add a New Record") 
+print("2. Delete a Record") 
+print("3. View All Records") 
+print("4. View All Gymnastics Gold Medal Winners") 
+print("5. Exit") 
+choice = int(input("Enter your choice: ")) 
+if choice == 1: 
+add_record() 
+elif choice == 2: 
+delete_record() 
+elif choice == 3: 
+view_all_records() 
+elif choice == 4: 
+search_winners() 
+elif choice == 5: 
+print("Exiting the program.") 
+break 
+else: 
+print("Invalid choice. Please try again.") 
+if __name__ == "__main__": 
+main()
